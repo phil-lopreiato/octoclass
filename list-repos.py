@@ -47,7 +47,7 @@ def get_repo_list(args, gh):
             # Ignore repos without proper prefix
             # So you can filter only repos from a single GH Classroom Assignment
             continue
-        print('{0.git_url} {0.pushed_at}'.format(repo))
+        print('{0.ssh_url}'.format(repo))
         count = count + 1
 
 
