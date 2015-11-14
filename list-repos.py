@@ -40,13 +40,15 @@ def get_gh_token(args):
 
 def get_repo_list(args, gh):
     org = gh.organization(args.org)
-    print "Got org: {}".format(org.as_json())
     repos = org.repositories()
     count = 0
     for repo in repos:
+        if not repo.name.startswith(args.repo_prefix):
+            # Ignore repos without proper prefix
+            # So you can filter only repos from a single GH Classroom Assignment
+            continue
         print('{0.git_url} {0.pushed_at}'.format(repo))
         count = count + 1
-    print "got {} repos".format(count)
 
 
 def load_gh_auth():
@@ -63,7 +65,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if os.path.isfile(CREDENTIALS_FILE):
-        print "Loading existing auth"
         auth = load_gh_auth()
     else:
         auth = get_gh_token(args)
