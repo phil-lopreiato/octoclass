@@ -1,1 +1,7 @@
-github_token.json
+*
+!.gitignore
+!README.md
+!LICENSE.md
+!clone-and-check.py
+!download-assignment.py
+!list-repos.sh
